@@ -73,9 +73,38 @@ contactForm.addEventListener('submit', sendEmail)
 
 /*=============== SHOW SCROLL UP ===============*/ 
 
+const scrollUp = () => {
+    const scrollUp = document.getElementById('scroll-up')
+    //when the scroll is higher than 350 viewport  height, and the show-scroll class to the a tag with the scroll up class
+    this.scrollY >= 350 ? scrollUp.classList.add('show-scroll')
+                                         : scrollUp.classList.remove('show-scroll')
+}
+
+window.addEventListener('scroll', scrollUp)
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 
+const sections =  document.querySelectorAll('section[id]')
+
+const scrollActive = () => {
+    const scrollDown = window.scrollY
+
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight,
+                sectionTop = current.offsetTop - 58,
+                sectionId = current.getAttribute('id'),
+                sectiionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+
+
+                if(scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight){
+                    sectiionsClass.classList.add('active-link')
+                }else{
+                    sectiionsClass.classList.remove('active-link')
+                }
+    })
+}
+
+window.addEventListener('scroll', scrollActive)
 
 /*=============== DARK LIGHT THEME ===============*/ 
 
