@@ -151,3 +151,48 @@ sr.reveal(`.home__name, .home__info, .contact__social,
          .about__container, .section__title-1, .section__title-2, .about__info,
             contact__social, .contact__data`, {origin:'left'})
 sr.reveal(`.services__card, .projects__card`, {interval:100})
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const gridBg = document.querySelector('.grid-bg');
+    const cells = [];
+    const gridSize = 20; // 20x20 grid
+  
+    // Create grid cells
+    for (let i = 0; i < gridSize * gridSize; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      gridBg.appendChild(cell);
+      cells.push(cell);
+    }
+  
+    // Mouse move effect
+    document.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX / window.innerWidth - 0.5;
+      const mouseY = e.clientY / window.innerHeight - 0.5;
+  
+      cells.forEach((cell, index) => {
+        const cellX = (index % gridSize) / gridSize - 0.5;
+        const cellY = Math.floor(index / gridSize) / gridSize - 0.5;
+        
+        const deltaX = mouseX - cellX;
+        const deltaY = mouseY - cellY;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        
+        const transform = `
+          translateZ(${50 * distance}px)
+          rotateX(${deltaY * 10}deg)
+          rotateY(${deltaX * -10}deg)
+        `;
+        
+        cell.style.transform = transform;
+        cell.style.background = `rgba(100, 255, 100, ${0.1 - distance / 2})`;
+      });
+    });
+  
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      cells.forEach(cell => cell.style.transform = '');
+    });
+  });
+
