@@ -1674,4 +1674,3 @@ textarea:focus ~ .contact__label,
   transition: transform 0.3s ease, background 0.3s ease;
   border: 1px solid rgba(100, 255, 100, 0.05);
 }
-

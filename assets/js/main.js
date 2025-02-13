@@ -196,3 +196,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+// sk-083a181580a34ebdb3a3346fc9fd7735
+
+    // Function to show the chatbot message every minute
+    function showMessage() {
+        const message = document.getElementById('chatbot-message');
+        message.style.display = 'block';
+        setTimeout(() => {
+          message.style.display = 'none';
+        }, 5000); // Hide message after 5 seconds
+      }
+  
+      // Show message every 60 seconds (60000 milliseconds)
+      setInterval(showMessage, 60000);
+  
+      // Function to toggle chat interaction (for future use)
+      function toggleChat() {
+        alert("Chat feature coming soon!");
+      }
