@@ -214,3 +214,25 @@ document.addEventListener('DOMContentLoaded', () => {
       function toggleChat() {
         alert("Chat feature coming soon!");
       }
+
+      //message button:
+
+      const chatButton = document.querySelector('.chat-button');
+      const socialIcons = document.querySelector('.social-icons');
+
+      chatButton.addEventListener('click', () => {
+          socialIcons.classList.toggle('active');
+          
+          // Reset animation
+          chatButton.style.animation = 'none';
+          setTimeout(() => {
+              chatButton.style.animation = 'pulse 2s infinite';
+          }, 10);
+      });
+
+      // Close when clicking outside
+      document.addEventListener('click', (e) => {
+          if (!e.target.closest('.chat-container')) {
+              socialIcons.classList.remove('active');
+          }
+      });

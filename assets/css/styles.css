@@ -1172,6 +1172,13 @@ textarea:focus ~ .contact__label,
     transform: translateX(0);
   }
 
+  .chat-container {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 9999;
+  }
+
 }
 
 /* For medium devices */
@@ -1673,4 +1680,90 @@ textarea:focus ~ .contact__label,
   background: rgba(100, 255, 100, 0.03);
   transition: transform 0.3s ease, background 0.3s ease;
   border: 1px solid rgba(100, 255, 100, 0.05);
+}
+
+/* Floating button container */
+.chat-container {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 9999;
+}
+
+/* Main chat button */
+.chat-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background:var(--first-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.chat-button i{
+  font-size: 1.5rem;
+  color: #deffbd;
+}
+
+/* Social icons container */
+.social-icons {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s ease;
+}
+
+/* When active */
+.social-icons.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Individual social buttons */
+.social-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  font-size: 1.5rem;
+}
+
+.social-icon:hover {
+  transform: scale(1.1) rotate(360deg);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Icon colors */
+.messenger { color: #006AFF; }
+.viber { color: #7360F2; }
+.telegram { color: #229ED9; }
+
+/* Pulse animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Hover effect on main button */
+.chat-button:hover {
+  transform: scale(1.1) rotate(180deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
