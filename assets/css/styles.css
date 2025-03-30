@@ -1992,3 +1992,64 @@ textarea:focus ~ .contact__label,
   background: transparent !important;
   mix-blend-mode: lighten;
 }
+
+.home__cta-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.medium-follow-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--first-color);
+  color: var(--white-color);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-medium);
+  transition: all 0.3s ease;
+}
+
+.medium-follow-btn i {
+  font-size: 1.25rem;
+}
+
+.medium-follow-btn:hover {
+  background: var(--black-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark theme adjustments */
+.dark-theme .medium-follow-btn {
+  background: var(--first-color);
+  color: var(--white-color);
+}
+
+.dark-theme .medium-follow-btn:hover {
+  background: var(--black-color);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .home__cta-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .medium-follow-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Remove old Medium subscription styles */
+.medium-subscribe-form,
+.medium-iframe,
+.newsletter-iframe {
+  display: none;
+}
