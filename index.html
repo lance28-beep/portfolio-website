@@ -478,22 +478,61 @@
 
     <!--==================== FOOTER ====================-->
     <footer class="footer">
-      <div class="footer__container container grid">
-        <ul class="footer__links">
-          <li>
-            <a href="#about" class="footer__link">About</a>
-          </li>
-          <li>
-            <a href="#services" class="footer__link">Services</a>
-          </li>
-          <li>
-            <a href="#projects" class="footer__link">Projects</a>
-          </li>
-        </ul>
-        <span class="footer__copy">
-          &#169; All Rights Reserved By
-          <a href="#">Lance Valle</a>
-        </span>
+      <div class="footer__container container">
+        <div class="footer__content">
+          <div class="footer__left">
+            <h3 class="footer__title">Quick Links</h3>
+            <ul class="footer__links">
+              <li><a href="#about" class="footer__link">About</a></li>
+              <li><a href="#services" class="footer__link">Services</a></li>
+              <li><a href="#projects" class="footer__link">Projects</a></li>
+              <li><a href="#contact" class="footer__link">Contact</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer__right">
+            <div class="newsletter__section">
+              <div class="newsletter__header">
+                <div class="newsletter__icon-wrapper">
+                  <i class="ri-send-plane-line"></i>
+                </div>
+                <div class="newsletter__text">
+                  <h3 class="newsletter__title">Join My Newsletter</h3>
+                  <p class="newsletter__subtitle">Stay updated with my latest projects and tech insights</p>
+                </div>
+              </div>
+              
+              <div class="newsletter__form-wrapper">
+                <form action="https://lancevalle.substack.com/api/v1/free" method="post" class="newsletter-form" target="_blank">
+                  <div class="newsletter-input-group">
+                    <input 
+                      type="email" 
+                      name="email" 
+                      placeholder="Enter your email" 
+                      required 
+                      class="newsletter-input"
+                      aria-label="Email subscription"
+                    />
+                    <button type="submit" class="newsletter-button">
+                      Subscribe
+                      <i class="ri-arrow-right-up-line"></i>
+                    </button>
+                  </div>
+                </form>
+                <p class="newsletter-terms">
+                  By subscribing, you agree to receive updates and marketing emails. You can unsubscribe at any time.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <span class="footer__copy">
+            &#169; 2024 All Rights Reserved By
+            <a href="#">Lance Valle</a>
+          </span>
+        </div>
       </div>
     </footer>
 
