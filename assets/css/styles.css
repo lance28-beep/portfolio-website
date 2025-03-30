@@ -1125,54 +1125,32 @@ textarea:focus ~ .contact__label,
 }
 
 .newsletter__section {
-  background: linear-gradient(145deg, 
-    rgba(var(--first-color), 0.1) 0%,
-    rgba(var(--first-color), 0.05) 100%
-  );
+  background: rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  padding: 2.5rem;
+  border-radius: 16px;
+  padding: 2rem;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
 }
 
-.newsletter__section::before {
-  content: '';
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(
-    circle,
-    rgba(var(--first-color), 0.1) 0%,
-    transparent 70%
-  );
-  top: -100px;
-  right: -100px;
-  border-radius: 50%;
-  z-index: 0;
-}
-
 .newsletter__header {
   display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-  position: relative;
-  z-index: 1;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .newsletter__icon-wrapper {
   background: var(--first-color);
-  border-radius: 16px;
-  padding: 1rem;
+  border-radius: 12px;
+  padding: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: var(--white-color);
-  box-shadow: 0 8px 24px rgba(var(--first-color), 0.2);
 }
 
 .newsletter__text {
@@ -1182,32 +1160,27 @@ textarea:focus ~ .contact__label,
 .newsletter__title {
   color: var(--white-color);
   font-size: var(--h3-font-size);
-  margin-bottom: 0.5rem;
-  font-weight: var(--font-bold);
+  margin-bottom: 0.25rem;
+  font-weight: var(--font-semi-bold);
 }
 
 .newsletter__subtitle {
   color: var(--text-color-light);
   font-size: var(--small-font-size);
-  line-height: 1.6;
-}
-
-.newsletter__form-wrapper {
-  position: relative;
-  z-index: 1;
+  line-height: 1.5;
 }
 
 .newsletter-form {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .newsletter-input-group {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.5rem;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 0.5rem;
+  border-radius: 12px;
+  padding: 0.375rem;
   transition: all 0.3s ease;
 }
 
@@ -1220,10 +1193,9 @@ textarea:focus ~ .contact__label,
   flex: 1;
   background: transparent;
   border: none;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
   color: var(--white-color);
   font-size: var(--normal-font-size);
-  border-radius: 12px;
 }
 
 .newsletter-input::placeholder {
@@ -1238,79 +1210,64 @@ textarea:focus ~ .contact__label,
   background: var(--first-color);
   color: var(--white-color);
   border: none;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
   font-size: var(--normal-font-size);
-  font-weight: var(--font-semi-bold);
+  font-weight: var(--font-medium);
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  white-space: nowrap;
 }
 
 .newsletter-button:hover {
   background: hsl(108, 81%, 22%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(var(--first-color), 0.2);
+  transform: translateY(-1px);
 }
 
 .newsletter-button i {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   transition: transform 0.3s ease;
 }
 
 .newsletter-button:hover i {
-  transform: translate(4px, -4px);
+  transform: translateX(4px);
 }
 
 .newsletter-terms {
   color: var(--text-color-light);
   font-size: var(--smaller-font-size);
   text-align: center;
-  line-height: 1.6;
-  opacity: 0.8;
+  line-height: 1.5;
+  opacity: 0.7;
 }
 
 /* Dark theme adjustments */
 .dark-theme .newsletter__section {
-  background: linear-gradient(145deg, 
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.02) 100%
-  );
-}
-
-.dark-theme .newsletter-input-group:focus-within {
-  border-color: var(--first-color);
-  box-shadow: 0 0 0 2px rgba(var(--first-color), 0.2);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
   .newsletter__section {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 
   .newsletter__header {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     gap: 1rem;
   }
 
   .newsletter-input-group {
     flex-direction: column;
-    gap: 1rem;
   }
 
   .newsletter-button {
     width: 100%;
     justify-content: center;
-  }
-
-  .newsletter-terms {
-    text-align: center;
   }
 }
 
