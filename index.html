@@ -48,7 +48,13 @@
     <title>Lance Valle Portfolio</title>
   </head>
   <body>
-    <div class="grid-bg"></div>
+    <div class="cyber-container">
+        <div class="particle-network" id="particles"></div>
+        <div class="hologrid"></div>
+        <div class="energy-core"></div>
+        <div class="tech-orb" style="top:20%; left:30%; width:150px; height:150px;"></div>
+        <div class="tech-orb" style="top:70%; left:70%; width:200px; height:200px;"></div>
+    </div>
     <!--==================== HEADER ====================-->
     <header class="header" id="header">
       <nav class="nav container">
@@ -595,5 +601,19 @@
     <!--=============== MAIN JS ===============-->
     <script src="assets/js/main.js"></script>
 
+    <!-- Particle Generation Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const particleContainer = document.getElementById('particles');
+          for(let i = 0; i < 100; i++) {
+              const particle = document.createElement('div');
+              particle.className = 'particle';
+              particle.style.left = `${Math.random() * 100}%`;
+              particle.style.animationDelay = `${Math.random() * 20}s`;
+              particle.style.setProperty('--particle-size', `${Math.random() * 4 + 2}px`);
+              particleContainer.appendChild(particle);
+          }
+      });
+    </script>
   </body>
 </html>

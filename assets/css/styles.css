@@ -12,11 +12,11 @@
   --black-color: hsl(0, 0%, 0%);
   --black-color-light: hsl(0, 0%, 40%);
   --white-color: hsl(0, 0%, 95%);
-  --title-color: hsl(0, 0%, 0%);
+  --title-color: hsl(0, 0%, 10%);
   --text-color: hsl(0, 0%, 35%);
   --text-color-light: hsl(0, 0%, 64%);
-  --body-color: hsl(0, 0%, 87%);
-  --container-color: hsl(0, 0%, 83%);
+  --body-color: hsl(0, 0%, 95%);
+  --container-color: hsl(0, 0%, 90%);
 
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
@@ -38,6 +38,27 @@
   /*========== z index ==========*/
   --z-tooltip: 10;
   --z-fixed: 100;
+
+  /* Grid Effects */
+  --grid-base: var(--first-color);
+  --grid-accent: hsl(108, 81%, 28%);
+  --grid-size: 40px;
+  --grid-speed: 40s;
+  --grid-blend: overlay;
+  --grid-opacity-light: 0.2;
+  --grid-opacity-dark: 0.4;
+  
+  /* Futuristic Effects */
+  --glow-color: hsla(108, 81%, 45%, 0.3);
+  --scan-line-color: hsla(108, 81%, 45%, 0.1);
+  --tech-pattern: hsla(108, 81%, 45%, 0.05);
+
+  --primary-glow: hsl(108, 81%, 45%);
+  --secondary-glow: hsl(108, 81%, 35%);
+  --particle-size: 2px;
+  --grid-spacing: 60px;
+  --grid-color: rgba(222, 255, 189, 0.05);
+  --core-color: rgba(222, 255, 189, 0.8);
 }
 
 /*========== Responsive typography ==========*/
@@ -60,11 +81,9 @@
   margin: 0;
 }
 
-html, body {
-  overflow-x: hidden;
-  width: 100%;
-  position: relative;
+html {
   scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 body {
@@ -73,6 +92,7 @@ body {
   background-color: var(--body-color);
   color: var(--text-color);
   transition: background-color .4s; /*for dark mode*/
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 h1, h2, h3, h4 {
@@ -110,7 +130,7 @@ img {
 
 /*========== Variables Dark theme ==========*/
 body.dark-theme{
-  --first-color: hsl(103, 63%, 27%);
+  --first-color: hsl(103, 63%, 35%);
   --black-color: hsl(0, 0%, 18%);
   --black-color-light: hsl(0, 0%, 30%);
   --title-color: hsl(0, 0%, 95%);
@@ -191,8 +211,7 @@ color: var(--white-color);
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
   max-width: 1120px;
-  margin-inline: 1rem;
-  width: calc(100% - 2rem);
+  margin-inline: 1.5rem;
 }
 
 .grid {
@@ -1435,11 +1454,20 @@ textarea:focus ~ .contact__label,
 /* For small devices */
 @media screen and (max-width: 340px){
   .container{
-    margin-inline: 1rem;
+    margin-inline: .5rem; /* Reduce margins for very small screens */
   }
 
   .home__image{
     width: 180px;
+  }
+
+  .home__perfil{
+    width: 100%; /* Ensure profile section doesn't overflow */
+    padding-inline: 1rem; /* Add padding instead of overflow */
+  }
+
+  .home__social{
+    left: 0; /* Adjust social icons position */
   }
 
   .about__image{
@@ -1466,6 +1494,25 @@ textarea:focus ~ .contact__label,
     z-index: 9999;
   }
 
+  .projects__card{
+    width: 100%;
+    margin-inline: auto;
+    padding: 1rem .75rem 1.5rem;
+  }
+
+  .projects__image{
+    width: 100%;
+    margin-bottom: .75rem;
+  }
+
+  .projects__img{
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .projects__content{
+    padding-inline: .5rem;
+  }
 }
 
 /* For medium devices */
@@ -1944,15 +1991,16 @@ textarea:focus ~ .contact__label,
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw; /* Use viewport width */
+  height: 100vh; /* Use viewport height */
   z-index: -1;
   display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(20, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(20px, 1fr)); /* Responsive grid */
+  grid-template-rows: repeat(auto-fill, minmax(20px, 1fr));
   gap: 2px;
   pointer-events: none;
-  background: #0a0e14; 
+  background: #0a0e14;
+  overflow: hidden; /* Prevent grid overflow */
 }
 
 .grid-bg::before {
@@ -2124,60 +2172,369 @@ textarea:focus ~ .contact__label,
   display: none;
 }
 
-/* Modify the container class */
-.container {
-  max-width: 1120px;
-  margin-inline: 1rem;
-  width: calc(100% - 2rem);
+/* Cyber Grid Styles */
+.cyber-grid {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: 
+    linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+  animation: gridPulse 8s infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
 }
 
-/* Modify home__social for mobile */
-@media screen and (max-width: 767px) {
-  .home__social {
-    position: relative;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
+.cyber-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(var(--grid-base) 1px, transparent 0),
+    linear-gradient(90deg, var(--grid-base) 1px, transparent 0),
+    repeating-linear-gradient(
+      45deg,
+      var(--tech-pattern) 0px,
+      var(--tech-pattern) 10px,
+      transparent 10px,
+      transparent 20px
+    );
+  background-size: 
+    calc(var(--grid-size) * 2) calc(var(--grid-size) * 2),
+    calc(var(--grid-size) * 2) calc(var(--grid-size) * 2),
+    100px 100px;
+  animation: 
+    gridMove var(--grid-speed) linear infinite,
+    techPatternMove 20s linear infinite;
+  opacity: var(--grid-opacity-light);
+  mix-blend-mode: overlay;
+}
+
+.cyber-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(
+      to bottom,
+      transparent 50%,
+      var(--scan-line-color) 50%,
+      var(--scan-line-color) 51%,
+      transparent 51%
+    );
+  background-size: 100% 8px;
+  animation: scanlines 10s linear infinite;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Enhanced Text Readability */
+.section__title-1, 
+.section__title-2,
+.home__name,
+.home__description,
+.about__description,
+.services__title,
+.projects__title {
+  position: relative;
+  color: var(--title-color);
+  text-shadow: 
+    0 1px 1px rgba(0,0,0,0.1),
+    0 0 15px var(--glow-color);
+  z-index: 1;
+}
+
+.dark-theme .section__title-1,
+.dark-theme .section__title-2,
+.dark-theme .home__name,
+.dark-theme .home__description,
+.dark-theme .about__description,
+.dark-theme .services__title,
+.dark-theme .projects__title {
+  color: var(--white-color);
+  text-shadow: 
+    0 1px 2px rgba(0,0,0,0.2),
+    0 0 20px var(--glow-color);
+}
+
+/* Text Container Enhancement */
+.home__description,
+.about__description,
+.services__content,
+.projects__content {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* New Animations */
+@keyframes techPatternMove {
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 0, 0 0, 100px 100px;
+  }
+}
+
+@keyframes scanlines {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes gridPulse {
+  0%, 100% {
+    opacity: var(--grid-opacity-light);
+    filter: brightness(0.9) contrast(1.1) saturate(1.1);
+  }
+  50% {
+    opacity: var(--grid-opacity-dark);
+    filter: brightness(1.2) contrast(1.3) saturate(1.3);
+  }
+}
+
+/* Performance Optimizations */
+.cyber-grid,
+.cyber-grid::before,
+.cyber-grid::after {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Advanced Hover Effects */
+.button:hover,
+.nav__link:hover,
+.projects__card:hover {
+  text-shadow: 0 0 15px var(--glow-color);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  :root {
+    --grid-size: 20px;
+    --grid-speed: 30s;
   }
   
-  .contact__data .section__title-2 {
-    transform: none;
-    margin: 0 0 1.5rem;
+  .cyber-grid::before {
+    background-size: 
+      calc(var(--grid-size) * 2) calc(var(--grid-size) * 2),
+      calc(var(--grid-size) * 2) calc(var(--grid-size) * 2),
+      50px 50px;
   }
+}
 
-  .newsletter__section {
+/* System Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .cyber-grid {
+    background: 
+      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  }
+  
+  .cyber-grid::before {
+    opacity: var(--grid-opacity-dark);
+  }
+}
+
+/* Additional Text Contrast Improvements */
+.nav__link,
+.footer__link,
+.contact__description-1,
+.contact__description-2 {
+  color: var(--text-color);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  font-weight: var(--font-medium);
+}
+
+.dark-theme .nav__link,
+.dark-theme .footer__link,
+.dark-theme .contact__description-1,
+.dark-theme .contact__description-2 {
+  color: var(--white-color);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Cyberpunk Background System */
+.cyber-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: var(--body-color);
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Dynamic Particle Network */
+.particle-network {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    filter: blur(35px);
+    opacity: 0.5;
+    mix-blend-mode: screen;
+}
+
+.particle {
+    position: absolute;
+    background: linear-gradient(45deg, var(--primary-glow), var(--secondary-glow));
+    width: var(--particle-size);
+    height: var(--particle-size);
+    border-radius: 50%;
+    animation: particle-flow 20s infinite linear;
+}
+
+/* Holographic Grid System */
+.hologrid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-size: var(--grid-spacing) var(--grid-spacing);
+    mask: radial-gradient(circle at center, black 20%, transparent 80%);
+    animation: grid-pulse 4s infinite alternate ease-in-out;
+}
+
+/* Central Energy Core */
+.energy-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, var(--core-color), transparent 70%);
+    filter: blur(50px);
+    animation: core-pulse 4s infinite ease-in-out;
+    mix-blend-mode: screen;
+}
+
+/* Floating Tech Orbs */
+.tech-orb {
+    position: absolute;
+    background: radial-gradient(circle, var(--secondary-glow), transparent 70%);
+    filter: blur(30px);
+    border-radius: 50%;
+    animation: orb-float 20s infinite linear;
+    mix-blend-mode: screen;
+}
+
+/* Enhanced Text Container */
+.home__description,
+.about__description,
+.services__content,
+.projects__content {
+    background: linear-gradient(
+        135deg,
+        rgba(222, 255, 189, 0.05),
+        rgba(222, 255, 189, 0.02)
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(222, 255, 189, 0.1);
+    border-radius: 8px;
     padding: 1.5rem;
-    margin: 0 auto;
-    width: 100%;
-  }
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Modify the contact section for better mobile layout */
-@media screen and (max-width: 576px) {
-  .contact__container {
-    padding-inline: 1rem;
-  }
-  
-  .contact__data {
-    width: 100%;
-    padding: 2rem 1rem;
-  }
-  
-  .contact__mail {
-    padding: 2rem 1rem;
-  }
+/* Text Glow Effects */
+.section__title-1, 
+.section__title-2,
+.home__name,
+.home__description,
+.about__description,
+.services__title,
+.projects__title {
+    color: var(--title-color);
+    text-shadow: 
+        0 0 10px var(--primary-glow),
+        0 0 20px var(--secondary-glow);
+    position: relative;
+    z-index: 1;
 }
 
-/* Add responsive handling for geometric boxes */
-@media screen and (max-width: 340px) {
-  .geometric-box {
-    display: none;
-  }
-  
-  .home__shadow,
-  .about__shadow {
-    right: -1rem;
-  }
+/* Animations */
+@keyframes particle-flow {
+    0% { 
+        transform: translateY(-100%) translateX(-50%);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { 
+        transform: translateY(100vh) translateX(50%);
+        opacity: 0;
+    }
+}
+
+@keyframes core-pulse {
+    0%, 100% { 
+        opacity: 0.3; 
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(50px);
+    }
+    50% { 
+        opacity: 0.6; 
+        transform: translate(-50%, -50%) scale(1.2);
+        filter: blur(40px);
+    }
+}
+
+@keyframes orb-float {
+    0% { transform: translate(0,0) scale(0.8); }
+    25% { transform: translate(100px,50px) scale(1.2); }
+    50% { transform: translate(50px,100px) scale(0.9); }
+    75% { transform: translate(-30px,70px) scale(1.1); }
+    100% { transform: translate(0,0) scale(0.8); }
+}
+
+@keyframes grid-pulse {
+    0%, 100% {
+        opacity: 0.3;
+        background-size: var(--grid-spacing) var(--grid-spacing);
+    }
+    50% {
+        opacity: 0.5;
+        background-size: calc(var(--grid-spacing) * 1.1) calc(var(--grid-spacing) * 1.1);
+    }
+}
+
+/* Dark Theme Adjustments */
+.dark-theme .cyber-container {
+    --primary-glow: hsl(108, 81%, 45%);
+    --secondary-glow: hsl(108, 81%, 35%);
+    --grid-color: rgba(222, 255, 189, 0.08);
+    --core-color: rgba(222, 255, 189, 0.9);
+}
+
+.dark-theme .particle-network {
+    opacity: 0.7;
+}
+
+/* Performance Optimizations */
+.cyber-container * {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
 }
